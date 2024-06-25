@@ -7,6 +7,53 @@
 	}
 </style>
 <div class="container my-5">
+	<div class="row justify-content-center">
+		<div class="col-md-8">
+			<div class="d-flex justify-content-between align-items-end">
+				<div>
+				<img width="200" src="<?= base_url('assets/commissionease-logo-blue.png') ?>" alt="logo">
+				</div>
+				<div>
+				<h3>Payslip</h3>
+				</div>
+			</div>
+			<div class="d-flex justify-content-between bg-light py-1 px-2 mt-5">
+				<div class="d-flex">
+					<div>Sales Representative No: 12312</div>
+					<div class="ms-3">Juan Tamad</div>
+				</div>
+				<div>
+					01/02/2024 - 15/02/2024
+				</div>
+			</div>
+			<div class="d-flex justify-content-between mt-5">
+				<div>
+					<div><b>Produced on:</b></div>
+					<div class="ms-3">
+						<div>15/02/2024</div>
+						<div>Juan Tamad</div>
+						<div>Address here</div>
+					</div>
+				</div>
+				<div>
+					<div><b>Produced by:</b></div>
+					<div class="ms-3">
+						<div>CommissionEase</div>
+						<div>123 Elm Street
+						Springfield, Anytown</div>
+						<div>www.commissionease.com</div>
+					</div>
+				</div>
+				<div>
+					<div><b>Statement Week:</b> 2024/02</div>
+					<div><b>Statement Date:</b> 15/02/2024</div>
+					<div><b>Payment Type:</b> Debit Card</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+<div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h3 class="text-center">Create Payroll</h3>
@@ -65,9 +112,9 @@
 					</div>
 					<div class="close ${client_index == 0 ? 'd-none' : ''}">
 						<button type="button" class="btn btn-danger" onclick="deleteClientRow(${client_index})"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
-<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
-<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
-</svg></button>
+						<path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5m3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0z"/>
+						<path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4zM2.5 3h11V2h-11z"/>
+						</svg></button>
 					</div>
 				</div>
 			`;
