@@ -21,16 +21,15 @@ class PayrollController extends CI_Controller {
 
     public function process() {
 
-		$sales_representative = $this->input->post('sales_representative');
-		$from_date = $this->input->post('from_date');
-		$to_date = $this->input->post('to_date');
-		$bonus = $this->input->post('bonus');
-		$client_name = $this->input->post('client_name');
-		$client_commission = $this->input->post('client_commission');
+		$sales_representative = $this->security->xss_clean($this->input->post('sales_representative'));
+		$from_date = $this->security->xss_clean($this->input->post('from_date'));
+		$to_date = $this->security->xss_clean($this->input->post('to_date'));
+		$bonus = $this->security->xss_clean($this->input->post('bonus'));
+		$client_name = $this->security->xss_clean($this->input->post('client_name'));
+		$client_commission = $this->security->xss_clean($this->input->post('client_commission'));
 
-		// Example: Inserting data into database
 		$payroll_data = [
-			'sales_representative' => $sales_representative,
+			'sales_rep_id' => $sales_representative,
 			'from_date' => $from_date,
 			'to_date' => $to_date,
 			'bonus' => $bonus,
@@ -47,7 +46,6 @@ class PayrollController extends CI_Controller {
 			];
 			$this->db->insert('payroll_clients', $client_data);
 		}
-		
 
 		$response = [
 			'status' => 'success',
@@ -100,4 +98,51 @@ class PayrollController extends CI_Controller {
         // }
 
     }
+
+	public function payslip($id) {
+		// Build and execute the query
+		// $query = $this->db->get_where('payrolls', array('sales_rep_id' => $id));
+		// // Fetch the result
+		// // $data['payroll'] = $query->result_array(); // Or $query->result() for object array
+		// // $payroll = $query->row_array(); 
+		// $data['payroll'] = $query->row_array(); 
+
+		// $query = $this->db->order_by('id', 'DESC')
+        //           ->limit(1)
+        //           ->get_where('payrolls', array('sales_rep_id' => $id));
+		// $data['payroll'] = $query->row_array();
+
+		// Build the query
+        $this->db->select('payrolls.id, sales_representatives.id as sales_rep_id, sales_representatives.name, payrolls.from_date, payrolls.to_date, payrolls.bonus, sales_representatives.commission_percentage, sales_representatives.tax_rate, sales_representatives.bonuses');
+        $this->db->from('payrolls');
+        $this->db->join('sales_representatives', 'sales_representatives.id = payrolls.sales_rep_id');
+        $this->db->where('payrolls.sales_rep_id', $id); // Add the where clause
+        $this->db->order_by('payrolls.id', 'DESC'); // Add the order by clause
+        $this->db->limit(1); // Add the limit clause
+        
+        // Execute the query
+        $query = $this->db->get();
+        
+        // Return the result
+		$data['payroll'] = $query->result_array(); // Using row() instead of result() to get a single row
+
+
+		$query = $this->db->get_where('payroll_clients', array('payroll_id' => 33));
+		$payroll_clients = $query->result_array();
+
+		$data['commission_details'] = [];
+
+		foreach($payroll_clients as $payroll_client) {
+
+			$data['commission_details'][] = [
+				'client_name' => $payroll_client['client_name'],
+				'commission_received' => $payroll_client['commission'],
+				'tax' => $data['payroll'][0]['tax_rate']
+			];
+		}
+
+		$this->load->view('template/header');
+		$this->load->view('payslip', $data);
+		$this->load->view('template/footer');
+	}
 }

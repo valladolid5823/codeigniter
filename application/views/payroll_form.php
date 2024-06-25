@@ -7,53 +7,6 @@
 	}
 </style>
 <div class="container my-5">
-	<div class="row justify-content-center">
-		<div class="col-md-8">
-			<div class="d-flex justify-content-between align-items-end">
-				<div>
-				<img width="200" src="<?= base_url('assets/commissionease-logo-blue.png') ?>" alt="logo">
-				</div>
-				<div>
-				<h3>Payslip</h3>
-				</div>
-			</div>
-			<div class="d-flex justify-content-between bg-light py-1 px-2 mt-5">
-				<div class="d-flex">
-					<div>Sales Representative No: 12312</div>
-					<div class="ms-3">Juan Tamad</div>
-				</div>
-				<div>
-					01/02/2024 - 15/02/2024
-				</div>
-			</div>
-			<div class="d-flex justify-content-between mt-5">
-				<div>
-					<div><b>Produced on:</b></div>
-					<div class="ms-3">
-						<div>15/02/2024</div>
-						<div>Juan Tamad</div>
-						<div>Address here</div>
-					</div>
-				</div>
-				<div>
-					<div><b>Produced by:</b></div>
-					<div class="ms-3">
-						<div>CommissionEase</div>
-						<div>123 Elm Street
-						Springfield, Anytown</div>
-						<div>www.commissionease.com</div>
-					</div>
-				</div>
-				<div>
-					<div><b>Statement Week:</b> 2024/02</div>
-					<div><b>Statement Date:</b> 15/02/2024</div>
-					<div><b>Payment Type:</b> Debit Card</div>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-<div class="container my-5">
         <div class="row justify-content-center">
             <div class="col-md-8">
                 <h3 class="text-center">Create Payroll</h3>
@@ -66,7 +19,7 @@
                             <option value="">Select</option>
                             <!-- Populate options dynamically from database or any other source -->
 							 <?php foreach($profiles as $profile): ?>
-								<option value="<?= $profile->name; ?>"><?= $profile->name; ?></option>
+								<option value="<?= $profile->id; ?>"><?= $profile->name; ?></option>
 							<?php endforeach; ?>
                         </select>
                     </div>
@@ -82,8 +35,11 @@
 					</div>
 					<div class="mb-3">
                         <label for="bonus" class="form-label">Bonuses</label>
-                        <input type="number" class="form-control" id="bonus" name="bonus" required>
-                    </div>
+						<div class="input-group">
+							<div class="input-group-text">$</div>
+							<input type="number" class="form-control" id="bonus" name="bonus" required>
+						</div>
+					</div>
                     <div id="clients_container">
                     </div>
                    <div class="d-flex">
@@ -106,8 +62,10 @@
 							<input type="text" class="form-control" id="client_name_${client_index}" name="client_name[]" required>
 						</div>
 						<div class="col-6">
-							<label for="commission_${client_index}" class="form-label">Commission</label>
-							<input type="number" class="form-control" id="commission_${client_index}" name="client_commission[]" required>
+							<label for="commission_${client_index}" class="form-label">Commission Received</label><div class="input-group">
+							<div class="input-group-text">$</div>
+								<input type="number" class="form-control" id="commission_${client_index}" name="client_commission[]" required>
+							</div>
 						</div>
 					</div>
 					<div class="close ${client_index == 0 ? 'd-none' : ''}">
@@ -138,9 +96,14 @@
                     success: function(response) {
                         if (response.status == 'success') {
                             $('#alert').removeClass('d-none alert-danger').addClass('alert-success').text(response.message);
-                            $('#payrollForm')[0].reset(); // Reset form after successful submission
-							$('#clients_container').empty();
 							addClient();
+							let sales_rep_id = $('#sales_representative').val();
+							console.log('sales_rep_id ', sales_rep_id)
+							let baseUrl = "<?= base_url('payroll/payslip') ?>";
+							let fullUrl = `${baseUrl}/${sales_rep_id}`;
+							window.open(fullUrl, '_blank');
+							$('#payrollForm')[0].reset(); // Reset form after successful submission
+							$('#clients_container').empty();
                         } else {
                             $('#alert').removeClass('d-none alert-success').addClass('alert-danger').html(response.message);
                         }

@@ -19,7 +19,10 @@
 				</div>
 				<div class="mb-3">
 					<label for="bonuses" class="form-label">Bonuses</label>
-					<input type="number" class="form-control" id="bonuses" name="bonuses" required>
+					<div class="input-group">
+						<div class="input-group-text">$</div>
+						<input type="number" class="form-control" id="bonuses" name="bonuses" required>
+					</div>
 				</div>
 				<button type="submit" class="btn btn-primary">Create Profile</button>
 			</form>
