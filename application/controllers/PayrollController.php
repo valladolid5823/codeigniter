@@ -52,50 +52,6 @@ class PayrollController extends CI_Controller {
 			'message' => 'Payroll created successfully!'
 		];
 		echo json_encode($response);
-	
-        // $this->form_validation->set_rules('sales_representative', 'Sales Representative', 'required');
-        // $this->form_validation->set_rules('from_date', 'From Date', 'required');
-        // $this->form_validation->set_rules('to_date', 'To Date', 'required');
-        // $this->form_validation->set_rules('bonus', 'Bonuses', 'required');
-		// $this->form_validation->set_rules('clients[][name]', 'Client Name', 'required');
-        // $this->form_validation->set_rules('clients[][commission]', 'Commission', 'required');
-        // if ($this->form_validation->run() == FALSE) {
-		// 	$this->viewPayrollForm();
-        // } else {
-        //     $sales_representative = $this->input->post('sales_representative');
-        //     $from_date = $this->input->post('from_date');
-        //     $to_date = $this->input->post('to_date');
-        //     $bonus = $this->input->post('bonus');
-        //     $clients = $this->input->post('clients');
-
-        //     // Process data as per your business logic (e.g., save to database, generate payroll, etc.)
-
-        //     // Example: Inserting data into database
-        //     $payroll_data = [
-        //         'sales_representative' => $sales_representative,
-        //         'from_date' => $from_date,
-        //         'to_date' => $to_date,
-        //         'bonus' => $bonus,
-        //     ];
-        //     $this->db->insert('payrolls', $payroll_data);
-
-        //     $payroll_id = $this->db->insert_id();
-
-        //     foreach ($clients as $client) {
-        //         $client_data = [
-        //             'payroll_id' => $payroll_id,
-        //             'client_name' => $client['name'],
-        //             'commission' => $client['commission'],
-        //         ];
-        //         $this->db->insert('payroll_clients', $client_data);
-        //     }
-
-		// 	$response = [
-		// 		'status' => 'success',
-		// 		'message' => 'Payroll created successfully!'
-		// 	];
-		// 	echo json_encode($response);
-        // }
 
     }
 
@@ -127,7 +83,7 @@ class PayrollController extends CI_Controller {
 		$data['payroll'] = $query->result_array(); // Using row() instead of result() to get a single row
 
 
-		$query = $this->db->get_where('payroll_clients', array('payroll_id' => 33));
+		$query = $this->db->get_where('payroll_clients', array('payroll_id' => $data['payroll'][0]['id']));
 		$payroll_clients = $query->result_array();
 
 		$data['commission_details'] = [];
@@ -157,5 +113,7 @@ class PayrollController extends CI_Controller {
 		$this->load->view('template/header');
 		$this->load->view('payslip', $data);
 		$this->load->view('template/footer');
+
+		// echo "<script>window.close()</script>";
 	}
 }

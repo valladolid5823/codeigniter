@@ -84,7 +84,6 @@
 		addClient();
 
         $(document).ready(function() {
-            var client_index = 1;
 
             $('#payrollForm').submit(function(event) {
                 event.preventDefault(); // Prevent default form submission
@@ -96,7 +95,7 @@
                     success: function(response) {
                         if (response.status == 'success') {
                             $('#alert').removeClass('d-none alert-danger').addClass('alert-success').text(response.message);
-							addClient();
+							
 							let sales_rep_id = $('#sales_representative').val();
 							console.log('sales_rep_id ', sales_rep_id)
 							let baseUrl = "<?= base_url('payroll/payslip') ?>";
@@ -104,6 +103,8 @@
 							window.open(fullUrl, '_blank');
 							$('#payrollForm')[0].reset(); // Reset form after successful submission
 							$('#clients_container').empty();
+							client_index = 0;
+							addClient();
                         } else {
                             $('#alert').removeClass('d-none alert-success').addClass('alert-danger').html(response.message);
                         }
