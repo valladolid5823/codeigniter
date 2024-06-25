@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 06:41 AM
+-- Generation Time: Jun 25, 2024 at 07:40 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,30 @@ SET time_zone = "+00:00";
 --
 -- Database: `online_ensure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `sales_representatives`
+--
+
+CREATE TABLE IF NOT EXISTS `sales_representatives` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `name` varchar(100) NOT NULL,
+  `commission_percentage` float NOT NULL,
+  `tax_rate` float NOT NULL,
+  `bonuses` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
+
+--
+-- Dumping data for table `sales_representatives`
+--
+
+INSERT INTO `sales_representatives` (`id`, `name`, `commission_percentage`, `tax_rate`, `bonuses`) VALUES
+(1, 'Juan Tamad', 10, 20, 30),
+(2, 'John Sena', 30, 20, 10),
+(3, 'Suman Makapal', 19, 20, 20);
 
 -- --------------------------------------------------------
 

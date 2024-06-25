@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') OR exit('No direct script access allowed');
 
-class Auth extends CI_Controller {
+class AuthController extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
@@ -15,8 +15,8 @@ class Auth extends CI_Controller {
 
    
     public function login() {
-        $username = $this->input->post('username');
-        $password = $this->input->post('password');
+        $username = $this->security->xss_clean($this->input->post('username'));
+        $password = $this->security->xss_clean($this->input->post('password'));
 
         // Dummy check for example purposes
         $this->db->where('username', $username);
