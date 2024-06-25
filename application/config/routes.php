@@ -49,28 +49,32 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 | Examples:	my-controller/index	-> my_controller/index
 |		my-controller/my-method	-> my_controller/my_method
 */
-$route['default_controller'] = 'welcome';
+$route['default_controller'] = 'auth';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
-$route['abouts'] = 'PageController/about';
-// $route['blog/(:any)'] = 'PageController/blog/$1';
-$route['blog/(:num)'] = 'PageController/blog/$1';
-
-$route['demo'] = 'PageController/demo';
-
-// Employee routes
-
-$route['employee'] = 'frontend/EmployeeController/index';
-$route['employee/add'] = 'frontend/EmployeeController/add';
-$route['employee/store'] = 'frontend/EmployeeController/store';
-$route['employee/edit/(:num)'] = 'frontend/EmployeeController/edit/$1';
-$route['employee/update/(:num)'] = 'frontend/EmployeeController/update/$1';
-
-$route['employee/delete/(:num)'] = 'frontend/EmployeeController/delete/$1';
-$route['employee/confirmdelete/(:num)']['DELETE'] = 'frontend/EmployeeController/delete/$1';
+$route['login'] = 'auth/login';
+// $route['dashboard'] = 'dashboard'; // Assuming you have a dashboard controller/view
 
 
-// Login and Register
+// $route['abouts'] = 'PageController/about';
+// // $route['blog/(:any)'] = 'PageController/blog/$1';
+// $route['blog/(:num)'] = 'PageController/blog/$1';
 
-$route['register']['GET'] = 'auth/RegisterController/index';
+// $route['demo'] = 'PageController/demo';
+
+// // Employee routes
+
+// $route['employee'] = 'frontend/EmployeeController/index';
+// $route['employee/add'] = 'frontend/EmployeeController/add';
+// $route['employee/store'] = 'frontend/EmployeeController/store';
+// $route['employee/edit/(:num)'] = 'frontend/EmployeeController/edit/$1';
+// $route['employee/update/(:num)'] = 'frontend/EmployeeController/update/$1';
+
+// $route['employee/delete/(:num)'] = 'frontend/EmployeeController/delete/$1';
+// $route['employee/confirmdelete/(:num)']['DELETE'] = 'frontend/EmployeeController/delete/$1';
+
+
+// // Login and Register
+
+// $route['register']['GET'] = 'auth/RegisterController/index';
