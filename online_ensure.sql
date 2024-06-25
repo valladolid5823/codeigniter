@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jun 25, 2024 at 07:40 AM
+-- Generation Time: Jun 25, 2024 at 09:33 AM
 -- Server version: 10.4.32-MariaDB
 -- PHP Version: 8.0.30
 
@@ -20,6 +20,56 @@ SET time_zone = "+00:00";
 --
 -- Database: `online_ensure`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payrolls`
+--
+
+CREATE TABLE IF NOT EXISTS `payrolls` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `sales_representative` varchar(255) NOT NULL,
+  `from_date` date NOT NULL,
+  `to_date` date NOT NULL,
+  `bonus` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payrolls`
+--
+
+INSERT INTO `payrolls` (`id`, `sales_representative`, `from_date`, `to_date`, `bonus`) VALUES
+(7, 'John Sena', '2024-06-25', '2024-06-25', 100),
+(8, 'Suman Makapal', '2024-06-25', '2024-06-25', 20),
+(9, 'Juan Tamad', '2024-06-25', '2024-06-25', 100);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payroll_clients`
+--
+
+CREATE TABLE IF NOT EXISTS `payroll_clients` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `payroll_id` int(11) NOT NULL,
+  `client_name` varchar(255) NOT NULL,
+  `commission` float NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `payroll_clients`
+--
+
+INSERT INTO `payroll_clients` (`id`, `payroll_id`, `client_name`, `commission`) VALUES
+(2, 7, 'Client 1', 100),
+(3, 8, 'Client 1', 10),
+(4, 8, 'Client 2', 20),
+(5, 9, 'Client 1', 100),
+(6, 9, 'Client 2', 200),
+(7, 9, 'Client 3', 300);
 
 -- --------------------------------------------------------
 

@@ -61,7 +61,8 @@ $route['logout'] = 'AuthController/logout';
 $route['salesrep/view'] = 'SalesController';
 $route['salesrep/create'] = 'SalesController/create';
 $route['salesrep/save'] = 'SalesController/save';
-$route['payroll/create'] = 'payroll/create';
+$route['payroll/create'] = 'PayrollController/create';
+$route['payroll/process'] = 'PayrollController/process';
 $route['pdfs'] = 'pdfs';
 
 // $route['dashboard'] = 'dashboard'; // Assuming you have a dashboard controller/view
