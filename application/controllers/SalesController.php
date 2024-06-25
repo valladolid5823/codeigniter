@@ -7,7 +7,7 @@ class SalesController extends CI_Controller {
         parent::__construct();
 		// Check if user is logged in
         if (!$this->session->userdata('username')) {
-            redirect('login');
+            redirect(base_url(''));
         }
     }
 

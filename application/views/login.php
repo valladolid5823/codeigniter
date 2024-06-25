@@ -6,6 +6,7 @@
 				<img width="357" src="<?= base_url('assets/commissionease-logo-blue.png') ?>" alt="logo">
 			</div>
 			<h5 class="mt-5">Login to your Account</h5>
+			<div id="alert" class="alert mt-3 d-none"></div>
 			<form id="loginForm">
 				<div class="mb-3">
 					<label for="username" class="form-label">Username</label>
@@ -17,7 +18,7 @@
 				</div>
 				<button type="submit" class="btn btn-primary w-100">Login</button>
 			</form>
-			<div id="alert" class="alert mt-3 d-none"></div>
+			
 		</div>
 	</div>
 </div>
@@ -34,8 +35,7 @@
 				dataType: 'json',
 				success: function(response) {
 					if (response.status == 'success') {
-						alert(response.message)
-						// window.location.href = 'dashboard'; // Redirect to dashboard or another page
+						window.location.href = "<?= base_url('salesrep/create'); ?>"
 					} else {
 						$('#alert').removeClass('d-none').addClass('alert-danger').text(response.message);
 					}

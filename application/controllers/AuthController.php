@@ -30,6 +30,17 @@ class AuthController extends CI_Controller {
         }
     }
 
+	public function logout() {
+        // Unset all session data
+        $this->session->unset_userdata('username');
+        // Add more session data to unset as needed
+
+        // Optionally, destroy the session
+        $this->session->sess_destroy();
+
+		redirect(base_url(''));
+    }
+
 	public function register() {
         $this->form_validation->set_rules('username', 'Username', 'required');
         $this->form_validation->set_rules('password', 'Password', 'required');
