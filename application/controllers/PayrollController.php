@@ -131,15 +131,28 @@ class PayrollController extends CI_Controller {
 		$payroll_clients = $query->result_array();
 
 		$data['commission_details'] = [];
-
+		$data['total_earnings'] = 0;
 		foreach($payroll_clients as $payroll_client) {
 
+			$sales_commission = ($data['payroll'][0]['commission_percentage'] / 100) * $payroll_client['commission'];
+			$tax_on_commission = ($data['payroll'][0]['tax_rate'] / 100) * $sales_commission;
+			$net_sales_commision = $sales_commission - $tax_on_commission;
 			$data['commission_details'][] = [
 				'client_name' => $payroll_client['client_name'],
 				'commission_received' => $payroll_client['commission'],
-				'tax' => $data['payroll'][0]['tax_rate']
+				'tax_on_commission' => $tax_on_commission,
+				'sales_commision' => $sales_commission,
+				'net_sales_commision' => $net_sales_commision
 			];
+
+			$data['total_earnings'] += $net_sales_commision;
 		}
+
+		$data['total_earnings'] = $data['total_earnings'] + $data['payroll'][0]['bonus'];
+
+		// Set the default timezone to Manila
+		date_default_timezone_set('Asia/Manila');
+		$data['current_date_time'] = date('Y-m-d h:i:s A');
 
 		$this->load->view('template/header');
 		$this->load->view('payslip', $data);

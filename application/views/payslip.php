@@ -22,9 +22,9 @@
 				<div>
 					<div><b>Produced on:</b></div>
 					<div class="ms-3">
-						<div>15/02/2024</div>
-						<div>Juan Tamad</div>
-						<div>Address here</div>
+						<div><?= $current_date_time; ?></div>
+						<div><?= $payroll[0]['name'] ?></div>
+						<div>543 Meda Street Atom, AnyCity</div>
 					</div>
 				</div>
 				<div>
@@ -37,8 +37,16 @@
 					</div>
 				</div>
 				<div>
-					<div><b>Statement Week:</b> 2024/02</div>
-					<div><b>Statement Date:</b> 15/02/2024</div>
+					<div><b>Statement Week:</b> <?php
+						$date=date_create($payroll[0]['to_date']);
+						echo date_format($date,"Ym");
+					
+					?></div>
+					<div><b>Statement Date:</b> <?php
+						$date=date_create($payroll[0]['to_date']);
+						echo date_format($date,"Y-m-d");
+					
+					?></div>
 					<div><b>Payment Type:</b> Debit Card</div>
 				</div>
 			</div>
@@ -62,9 +70,9 @@
 						<tr>
 							<td><?= $comm['client_name'] ?></td>
 							<td>$<?= $comm['commission_received'] ?></td>
-							<td>$<?= $comm['tax'] ?></td>
-							<td>$<?= $comm['client_name'] ?></td>
-							<td>$<?= $comm['client_name'] ?></td>
+							<td>$<?= $comm['tax_on_commission'] ?></td>
+							<td>$<?= $comm['sales_commision'] ?></td>
+							<td>$<?= $comm['net_sales_commision'] ?></td>
 						</tr>
 						<?php endforeach; ?>
 					</tbody>
@@ -79,8 +87,8 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>$200</td>
-							<td>$2,360</td>
+							<td>$<?= $payroll[0]['bonus']; ?></td>
+							<td>$<?= $total_earnings; ?></td>
 						</tr>
 					</tbody>
 				</table>
@@ -95,7 +103,7 @@
         const element = document.getElementById("pageprint");
         html2pdf().set({
             margin: [0, 0, 0, 0],
-            filename: "CommissionEase Payslip for <?= $payroll['sales_representative']; ?>",
+            filename: "CommissionEase Payslip for <?= $payroll[0]['name']; ?>",
             html2canvas: { scale: 1, scrollY: 0 },
             jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
         }).from(element).toPdf().get('pdf').then(function (pdf) {
@@ -113,5 +121,5 @@
     function downloadCode(){
         generatePDF();
     }
-	// downloadCode();
+	downloadCode();
 </script>
