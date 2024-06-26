@@ -3,7 +3,7 @@
 	<div class="row justify-content-center">
 		<div class="col-md-4">
 			<div class="d-flex justify-content-center">
-				<img width="357" src="<?= base_url('assets/commissionease-logo-blue.png') ?>" alt="logo">
+				<img width="357" src="<?= base_url('assets/onlineensure-logo.png') ?>" alt="logo">
 			</div>
 			<h5 class="mt-5">Login to your Account</h5>
 			<div id="alert" class="alert mt-3 d-none"></div>

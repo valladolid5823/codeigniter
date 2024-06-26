@@ -3,7 +3,7 @@
 		<div class="col-md-11">
 			<div class="d-flex justify-content-between align-items-end">
 				<div>
-				<img width="200" src="<?= base_url('assets/commissionease-logo-blue.png') ?>" alt="logo">
+				<img width="200" src="<?= base_url('assets/onlineensure-logo.png') ?>" alt="logo">
 				</div>
 				<div>
 				<h3>Payslip</h3>
@@ -30,10 +30,10 @@
 				<div>
 					<div><b>Produced by:</b></div>
 					<div class="ms-3">
-						<div>CommissionEase</div>
+						<div>OnlineEnsure</div>
 						<div>123 Elm Street
 						Springfield, Anytown</div>
-						<div>www.commissionease.com</div>
+						<div>www.onlineensure.com</div>
 					</div>
 				</div>
 				<div>
@@ -103,7 +103,7 @@
         const element = document.getElementById("pageprint");
         html2pdf().set({
             margin: [0, 0, 0, 0],
-            filename: "CommissionEase Payslip for <?= $payroll[0]['name']; ?>",
+            filename: "OnlineEnsure Payslip for <?= $payroll[0]['name']; ?>",
             html2canvas: { scale: 1, scrollY: 0 },
             jsPDF: { unit: 'pt', format: 'letter', orientation: 'portrait' }
         }).from(element).toPdf().get('pdf').then(function (pdf) {
